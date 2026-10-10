@@ -1,0 +1,3 @@
+package com.eventmanager.controller;
+import com.eventmanager.dao.UserDAO; import com.eventmanager.model.User; import jakarta.servlet.*; import jakarta.servlet.annotation.WebServlet; import jakarta.servlet.http.*; import java.io.IOException;
+@WebServlet("/login") public class LoginServlet extends HttpServlet { protected void doPost(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException{try{User u=new UserDAO().login(req.getParameter("email"),req.getParameter("password"));if(u==null){req.setAttribute("error","Invalid email or password");req.getRequestDispatcher("login.jsp").forward(req,res);return;}req.getSession().setAttribute("user",u);res.sendRedirect("dashboard");}catch(Exception e){throw new ServletException(e);}} }

@@ -1,0 +1,4 @@
+package com.eventmanager.dao;
+import com.eventmanager.model.Ticket; import com.eventmanager.util.DB; import java.sql.*; import java.util.*;
+public class TicketDAO { public void create(Ticket t)throws SQLException{try(Connection c=DB.getConnection();PreparedStatement p=c.prepareStatement("INSERT INTO tickets(event_id,ticket_name,price,quantity) VALUES(?,?,?,?)")){p.setInt(1,t.eventId);p.setString(2,t.ticketName);p.setDouble(3,t.price);p.setInt(4,t.quantity);p.executeUpdate();}}
+ public List<Ticket> byEvent(int id)throws SQLException{List<Ticket> l=new ArrayList<>();try(Connection c=DB.getConnection();PreparedStatement p=c.prepareStatement("SELECT id,event_id,ticket_name,price,quantity FROM tickets WHERE event_id=?")){p.setInt(1,id);ResultSet r=p.executeQuery();while(r.next()){Ticket t=new Ticket();t.id=r.getInt(1);t.eventId=r.getInt(2);t.ticketName=r.getString(3);t.price=r.getDouble(4);t.quantity=r.getInt(5);l.add(t);}}return l;}}
