@@ -31,5 +31,4 @@ Java 21, Jakarta Servlet 6, JSP/JSTL, MySQL 8+, JDBC, HTML5, CSS3, Maven, Apache
 `webapp/` = JSP pages, CSS and web configuration
 `database/` = SQL schema and demo data
 
-## GitHub checklist
-Create a public repository, upload the complete project, README and SQL file, then test the URL in an incognito browser before submission.
+
